@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+  main {
+    margin: 2rem 5rem;
+    padding: 1.5rem;
+    justify-content: space-between;
+    min-height: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .error {
+    color: red;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  main > div {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  main > div > div:first-child {
+    width: 40%;
+  }
+  main > div > div:last-child {
+    width: 60%;
+  }
+
+  form {
+    width: 100%;
+    max-width: 500px;
+    padding-bottom: 20px;
+    padding-right: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  form > div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+form > div > label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+  form > div > input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    width: 100%;
+  }
+
+  form > div > input:focus {
+    outline: none;
+    border-color: #000;
+  }
+
+  form > button {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+  }
+
+  table th, table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  table th {
+    font-weight: bold;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  table tr:hover {
+    background-color: #ddd;
+  }
+
+  table th {
+    background-color: #000;
+    color: #fff;
+  }
+
+  
+
+  </style>
+  <title>Document</title>
+</head>
+<body>
+<main>
+
+
+  <header>
+    <h3><a href="/" class="logo">Home</a></h3>
+  <h2>Serving from Server at {{.ServerPort}}</h2>
+  </header>
+  {{if .Error}}
+    <h3 class="error">Error: {{.Error}}</h3>
+  {{end}}
+  <div>
+  <div>
+    <form action="" method="post">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description">
+      </div>
+      <button type="submit">Create Job</button>
+    </form>
+  </div>
+  <div>
+    <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Jobs}}
+      <tr>
+        <td><a href="/job?id={{.ID}}">{{.Name}}</a></td>
+        <td>{{.Description}}</td>
+        <td>
+          <a href="/job/delete?id={{.ID}}">Delete</a>
+        </td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+  </div>
+  </div>
+</main>  
+</body>
+</html>
