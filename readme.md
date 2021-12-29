@@ -6,6 +6,13 @@ Creating an app that uses the [Hashistack](https://hashicorp.com) Tools.
 - Consul for service discovery
 - Fabio\* for load balancing
 
+### Requirements
+
+- Nomad
+- Go
+
+### Info
+
 - Go application is running on 5 different instances, each with a different port.
 - Nomad is used to schedule the instances.
 - Fabio balances the load between the instances.
@@ -13,6 +20,7 @@ Creating an app that uses the [Hashistack](https://hashicorp.com) Tools.
 
 #### Run nomad jobs
 
+Change hardcoded paths in the jobs to match your environment.
 `cd nomad`
 `nomad job init`
 `nomad job run consul.nomad`
