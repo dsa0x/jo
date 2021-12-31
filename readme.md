@@ -28,4 +28,6 @@ Change hardcoded paths in the jobs to match your environment.
 `nomad job run web.nomad`
 `nomad job run fabio.nomad`
 
+Just for dev purposes, Never run db jobs in production.
+
 If you are using a non-M1 machine, replace `fabio.nomad` with the right artifact.
